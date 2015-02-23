@@ -1,0 +1,42 @@
+#container {
+	position: relative;
+	width: 960px;
+	height: 490px;
+}
+
+#monkey {
+	width: 168px;
+	height: 164px;
+	background-image: url('../images/monkey.gif');
+	background-repeat: no-repeat;
+	position: absolute;
+	bottom: 0;
+	left: 0;
+}
+
+#tree {
+	width: 248px;
+	height: 355px;
+	background-image: url('../images/tree.gif');
+	background-repeat: no-repeat;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+#bananas {
+	width: 320px;
+	height: 54px;
+	margin: 0 auto;
+	position: absolute;
+	bottom: 0;
+	left: 33%;
+}
+
+.banana {
+	width: 106px;
+	height: 54px;
+	background-image: url('../images/banana.gif');
+	background-repeat: no-repeat;
+	float: left;
+}
