@@ -12,29 +12,66 @@
             this.$el.attr('tabindex', -1).focus();
         },
         onKeydown: function (e) {
-            this.trigger('monkey:move', e.keyCode);
+            this.trigger('monkey:beforeMove', e.keyCode, this);
         }
     });
 
     var MonkeyView = Marionette.ItemView.extend({
         template: false,
         el: '#monkey',
-        move: function (keyCode) {
+        stride: 124,
+        initialize: function (offset) {
+            this.on('monkey:move', this.onMove, this);
+            this.on('monkey:moved', this.onMoved, this);
+        },
+        onBeforeMove: function (keyCode, container) {
             var offset;
             if (keyCode === 37) {
-                offset = parseInt(this.$el.css('left'), 10) - 124;
+                offset = parseInt(this.$el.css('left'), 10) - this.model.get('stride');
             }
             if (keyCode === 39) {
-                offset = parseInt(this.$el.css('left'), 10) + 124;
+                offset = parseInt(this.$el.css('left'), 10) + this.model.get('stride');
             }
+            if (offset > -1 && (this.$el.width() + offset) < container.$el.width()) {
+                this.trigger('monkey:move', offset, container);
+            }
+        },
+        onMove: function (offset, container) {
             this.$el.css('left', offset + 'px');
+            this.trigger('monkey:moved', parseInt(this.$el.css('left'), 10), container);
+        },
+        onMoved: function (offset, container) {
+            if ((container.$el.width() - offset) < (this.$el.width() + this.model.get('stride'))) {
+                this.trigger('monkey:finished');
+            }
         }
     });
 
+    var TreeView = Marionette.ItemView.extend({
+        template: false,
+        el: '#tree'
+    });
+
+    var ModalView = Marionette.ItemView.extend({
+        template: false,
+        el: '#modal',
+        open: function () {
+            this.$el.modal();
+        }
+    });
+
+    var monkey = new Backbone.Model({stride: 124});
+
     var containerView = new ContainerView();
 
-    var monkeyView = new MonkeyView();
+    var monkeyView = new MonkeyView({model: monkey});
 
-    monkeyView.listenTo(containerView, 'monkey:move', monkeyView.move);
+    var treeView = new TreeView();
+
+    var modalView = new ModalView();
+
+    monkeyView.listenTo(containerView, 'monkey:beforeMove', monkeyView.onBeforeMove);
+
+    modalView.listenTo(monkeyView, 'monkey:finished', modalView.open);
 
 })(jQuery, _, Backbone, Marionette);

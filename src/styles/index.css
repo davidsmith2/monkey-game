@@ -76,6 +76,10 @@ body {
 	z-index: 0;
 }
 
+#modal {
+	display: none;
+}
+
 #snacks {
 	background-image: url('../images/snacks.gif');
 	background-repeat: no-repeat;
