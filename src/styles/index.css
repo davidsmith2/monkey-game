@@ -49,7 +49,8 @@ body {
 	height: 164px;
 	left: 0;
 	position: absolute;
-	width: 168px;
+	width: 181px;
+	z-index: 1;
 }
 
 #bananas {
@@ -58,7 +59,7 @@ body {
 	left: 33%;
 	margin: 0 auto;
 	position: absolute;
-	width: 320px;
+	width: 372px;
 }
 
 #tree {
@@ -69,6 +70,18 @@ body {
 	position: absolute;
 	right: 0;
 	width: 248px;
+	z-index: 0;
+}
+
+#snacks {
+	background-image: url('../images/snacks.gif');
+	background-repeat: no-repeat;
+	bottom: 38px;
+	height: 73px;
+	left: 294px;
+	position: absolute;
+	width: 372px;
+	z-index: 0;
 }
 
 .banana {
@@ -76,5 +89,5 @@ body {
 	background-repeat: no-repeat;
 	float: left;
 	height: 54px;
-	width: 106px;
+	width: 124px;
 }

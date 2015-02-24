@@ -22,10 +22,10 @@
         move: function (keyCode) {
             var offset;
             if (keyCode === 37) {
-                offset = parseInt(this.$el.css('left'), 10) - 96;
+                offset = parseInt(this.$el.css('left'), 10) - 124;
             }
             if (keyCode === 39) {
-                offset = parseInt(this.$el.css('left'), 10) + 96;
+                offset = parseInt(this.$el.css('left'), 10) + 124;
             }
             this.$el.css('left', offset + 'px');
         }
