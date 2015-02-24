@@ -4,7 +4,7 @@
 
     var ContainerView = Marionette.ItemView.extend({
         template: false,
-        el: '#container',
+        el: '#main',
         events: {
             'keydown': 'onKeydown'
         },
@@ -12,18 +12,22 @@
             this.$el.attr('tabindex', -1).focus();
         },
         onKeydown: function (e) {
-            if (e.keyCode === 39) {
-                this.trigger('monkey:move');
-            }
+            this.trigger('monkey:move', e.keyCode);
         }
     });
 
     var MonkeyView = Marionette.ItemView.extend({
         template: false,
         el: '#monkey',
-        move: function () {
-            var left = parseInt(this.$el.css('left'), 10) + 96;
-            this.$el.css('left', left + 'px');
+        move: function (keyCode) {
+            var offset;
+            if (keyCode === 37) {
+                offset = parseInt(this.$el.css('left'), 10) - 96;
+            }
+            if (keyCode === 39) {
+                offset = parseInt(this.$el.css('left'), 10) + 96;
+            }
+            this.$el.css('left', offset + 'px');
         }
     });
 
