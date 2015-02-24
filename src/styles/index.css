@@ -6,19 +6,19 @@ body {
 
 #container-outer {
 	background-color: #662d91;
-	background-image: url('../images/star_border.gif');
+	background-image: url('../images/star_border.png');
 	background-position: center;
-	height: 775px;
+	background-repeat: no-repeat;
+	height: 773px;
 	margin: 0 auto;
-	width: 1010px;
+	width: 1014px;
 }
 
 #container-inner {
-	background-color: #edd75b;
 	height: 720px;
 	margin: 0 auto;
 	position: relative;
-	top: 30px;
+	top: 28px;
 	width: 960px;
 }
 
@@ -30,6 +30,9 @@ body {
 }
 
 #main {
+	background:
+		url('../images/banana_background.gif') no-repeat,
+		url('../images/main_background.gif');
 	height: 580px;
 	outline: none;
 	position: relative;
