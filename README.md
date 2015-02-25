@@ -2,7 +2,8 @@
 
 ## Usage
 
-Extract the contents of the ZIP file to your local machine. Then open src/index.html in a browser.
+* Either clone the repo or download the ZIP file and extract the contents to a local folder.
+* Open src/index.html in a browser.
 
 ## Browser support
 
