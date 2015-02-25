@@ -77,7 +77,16 @@ body {
 }
 
 #modal {
+	background-color: #fff;
+	border: 5px solid #000;
+	border-radius: 10px;
 	display: none;
+	font-family: cursive;
+	font-size: 2em;
+	padding: 60px 30px;
+	position: relative;
+	text-align: center;
+	top: -100px;
 }
 
 #snacks {

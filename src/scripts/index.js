@@ -1,7 +1,5 @@
 (function ($, _, Backbone, Marionette) {
 
-    var App = new Marionette.Application();
-
     var ContainerView = Marionette.ItemView.extend({
         template: false,
         el: '#main',
@@ -47,11 +45,6 @@
         }
     });
 
-    var TreeView = Marionette.ItemView.extend({
-        template: false,
-        el: '#tree'
-    });
-
     var ModalView = Marionette.ItemView.extend({
         template: false,
         el: '#modal',
@@ -60,13 +53,9 @@
         }
     });
 
-    var monkey = new Backbone.Model({stride: 124});
-
     var containerView = new ContainerView();
 
-    var monkeyView = new MonkeyView({model: monkey});
-
-    var treeView = new TreeView();
+    var monkeyView = new MonkeyView({model: new Backbone.Model({stride: 124})});
 
     var modalView = new ModalView();
 
