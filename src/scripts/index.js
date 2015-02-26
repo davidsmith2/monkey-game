@@ -17,20 +17,20 @@
     var MonkeyView = Marionette.ItemView.extend({
         template: false,
         el: '#monkey',
-        stride: 124,
         initialize: function (offset) {
             this.on('monkey:move', this.onMove, this);
             this.on('monkey:moved', this.onMoved, this);
         },
         onBeforeMove: function (keyCode, container) {
-            var offset;
+            var offset = parseInt(this.$el.css('left'), 10),
+                stride = this.model.get('stride');
             if (keyCode === 37) {
-                offset = parseInt(this.$el.css('left'), 10) - this.model.get('stride');
+                offset = offset - stride;
             }
             if (keyCode === 39) {
-                offset = parseInt(this.$el.css('left'), 10) + this.model.get('stride');
+                offset = offset + stride;
             }
-            if (offset > -1 && (this.$el.width() + offset) < container.$el.width()) {
+            if (this.monkeyCanMove(offset, container)) {
                 this.trigger('monkey:move', offset, container);
             }
         },
@@ -39,9 +39,15 @@
             this.trigger('monkey:moved', parseInt(this.$el.css('left'), 10), container);
         },
         onMoved: function (offset, container) {
-            if ((container.$el.width() - offset) < (this.$el.width() + this.model.get('stride'))) {
+            if (this.monkeyHasFinished(offset, container)) {
                 this.trigger('monkey:finished');
             }
+        },
+        monkeyCanMove: function (offset, container) {
+            return (offset > -1) && ((this.$el.width() + offset) < container.$el.width());
+        },
+        monkeyHasFinished: function (offset, container) {
+            return (container.$el.width() - offset) < (this.$el.width() + this.model.get('stride'));
         }
     });
 
